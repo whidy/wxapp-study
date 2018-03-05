@@ -4,10 +4,25 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
+    motto: 'World',
     userInfo: {},
+    userLoc: [],
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
+  },
+  getLocationFn: () => {
+    console.log('获取地理位置');
+    // var _this = this.data;
+    wx.getLocation({
+      type: '',
+      altitude: true,
+      success: function (res) {
+        // _this.userLoc = [res.latitude, res.altitude];
+        console.log(res);
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
   },
   //事件处理函数
   bindViewTap: function() {
@@ -16,6 +31,7 @@ Page({
     })
   },
   onLoad: function () {
+    // this.getLocationFn();
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
