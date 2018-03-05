@@ -1,2 +1,3 @@
 # wxapp-study
-wechat app study
+
+微信小程序的开发的学习项目
