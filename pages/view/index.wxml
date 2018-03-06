@@ -1,0 +1,62 @@
+<!--index.wxml-->
+<view class="container">
+  <view>{{text}}</view>
+  <view>{{array[0].msg}}</view>
+  <view bindtap="viewTap"> click me </view>
+  <view>{{text}}</view>
+  <button bindtap="changeText"> Change normal data </button>
+  <view>{{num}}</view>
+  <button bindtap="changeNum"> Change normal num </button>
+  <view>{{array[0].text}}</view>
+  <button bindtap="changeItemInArray"> Change Array data </button>
+  <view>{{object.text}}</view>
+  <button bindtap="changeItemInObject"> Change Object data </button>
+  <view>{{newField.text}}</view>
+  <button bindtap="addNewField"> Add new data </button>
+  <button bindtap="helloMINA"> helloMINA </button>
+  <button bindtap="goodbyeMINA"> goodbyeMINA </button>
+  <block wx:for="{{arrayNums}}">
+    <view> {{index}}: {{item}} </view>
+  </block>
+  <switch wx:for="{{objectArray}}" wx:key="unique" style="display: block;"> {{item.id}} </switch>
+  <button bindtap="switch"> Switch </button>
+  <button bindtap="addToFront"> Add to the front </button>
+
+  <switch wx:for="{{numberArray}}" wx:key="*this" style="display: block;"> {{item}} </switch>
+  <button bindtap="addNumberToFront"> Add to the front </button>
+</view>
+
+<template name="staffName">
+  <view>
+    FirstName: {{firstName}}, LastName: {{lastName}}
+  </view>
+</template>
+
+<template is="staffName" data="{{...staffA}}"></template>
+<template is="staffName" data="{{...staffB}}"></template>
+<template is="staffName" data="{{...staffC}}"></template>
+
+<!--
+  index: int
+  msg: string
+  time: string
+-->
+<template name="msgItem">
+  <view>
+    <text> {{index}}: {{msg}} </text>
+    <text> Time: {{time}} </text>
+  </view>
+</template>
+
+<template is="msgItem" data="{{...item}}"/>
+
+<template name="odd">
+  <view> odd </view>
+</template>
+<template name="even">
+  <view> even </view>
+</template>
+
+<block wx:for="{{[1, 2, 3, 4, 5]}}">
+    <template is="{{item % 2 == 0 ? 'even' : 'odd'}}"/>
+</block>
