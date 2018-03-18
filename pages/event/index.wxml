@@ -4,6 +4,16 @@
   <view id="tapTest" data-hi="WeChat" bindtap="tapName"> Click me! </view>
 </view>
 
+<view class="zan-dialog {{ hasUserInfo ? '' : 'zan-dialog--show' }}">
+  <view class="zan-dialog--mask"></view>
+  <view class="zan-dialog--container">
+    <view class="zan-dialog__content">必须授权</view>
+    <view class="zan-dialog__footer zan-dialog__footer--horizon">
+      <button bindtap="retry" class="zan-dialog__button zan-btn">重新授权</button>
+    </view>
+  </view>
+</view>
+
 <view id="outer" bindtap="handleTap1">
   outer view
   <view id="middle" catchtap="handleTap2">

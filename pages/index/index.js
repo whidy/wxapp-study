@@ -3,10 +3,10 @@
 const app = getApp();
 
 // The localValue can only be used in file a.js.
-var localValue = 'a';
+// var localValue = 'a';
 // Get the global data and change it.
-app.globalData.userInfo = localValue;
-console.log(app.globalData); // I am global data
+// app.globalData.userInfo = localValue;
+// console.log(app.globalData); // I am global data
 Page({
   data: {
     motto: 'World',

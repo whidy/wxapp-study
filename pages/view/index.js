@@ -1,6 +1,6 @@
 // other.js
-var appInstance = getApp();
-console.log(appInstance.globalData); // I am global data
+var app = getApp();
+// console.log(app.globalData); // I am global data
 var common = require('../../utils/common');
 //index.js
 Page({
