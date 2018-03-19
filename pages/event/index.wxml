@@ -1,15 +1,25 @@
 <!--index.wxml-->
-<include src="../../templates/header.wxml"/>
+<include src="../../templates/header.wxml" />
+
+<view>
+  <!-- 以下是对一个自定义组件的引用 -->
+  <component-tag-name inner-text="Some text"></component-tag-name>
+</view>
+
 <view class="container">
   <view id="tapTest" data-hi="WeChat" bindtap="tapName"> Click me! </view>
 </view>
 
-<view class="zan-dialog {{ hasUserInfo ? '' : 'zan-dialog--show' }}">
+<!-- open-type="getUserInfo" bindgetuserinfo="getUserInfo" -->
+<view class="zan-dialog {{ hasDialog  ? 'zan-dialog--show' : '' }}">
   <view class="zan-dialog--mask"></view>
   <view class="zan-dialog--container">
-    <view class="zan-dialog__content">必须授权</view>
+    <view class="zan-dialog__content">建议授权方便登录哦</view>
     <view class="zan-dialog__footer zan-dialog__footer--horizon">
-      <button bindtap="retry" class="zan-dialog__button zan-btn">重新授权</button>
+      <button class="zan-dialog__button zan-btn" data-type="cancel" bindtap="closeDialog">取消</button>
+      <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="zan-dialog__button zan-btn">重新授权</button>
+      <!-- 为了兼容低版本微信, 尚未测试 -->
+      <button wx:else bindtap="retry" class="zan-dialog__button zan-btn">重新授权</button>
     </view>
   </view>
 </view>
