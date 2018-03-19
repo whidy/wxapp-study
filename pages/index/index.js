@@ -40,6 +40,12 @@ Page({
     });
   },
   onLoad: function() {
+
+    // 测试重新加载event页面 来更新数据 此操作不行
+    // wx.reLaunch({
+    //   url: '../event/index'
+    // })
+
     // this.getLocationFn();
     // if (app.globalData.userInfo) {
     //   this.setData({
