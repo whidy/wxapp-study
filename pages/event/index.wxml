@@ -18,7 +18,7 @@
     <view class="zan-dialog__footer zan-dialog__footer--horizon">
       <button class="zan-dialog__button zan-btn" data-type="cancel" bindtap="closeDialog">取消</button>
       <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="zan-dialog__button zan-btn">重新授权</button>
-      <!-- 为了兼容低版本微信, 尚未测试 -->
+      <!-- 为了兼容低版本微信, 已测试 1.2.5版本库, 通过! -->
       <button wx:else bindtap="retry" class="zan-dialog__button zan-btn">重新授权</button>
     </view>
   </view>

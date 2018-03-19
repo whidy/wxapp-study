@@ -4,7 +4,7 @@ const { Dialog, extend } = require('../../zanui/index');
 Page(
   extend({}, Dialog, {
     data: {
-      userInfo: {},
+      userInfo: null,
       hasUserInfo: false,
       canIUse: wx.canIUse('button.open-type.getUserInfo'),
       hasDialog: false,
@@ -31,12 +31,11 @@ Page(
           // console.log(this.data.hasUserInfo);
         };
         app.failedCallback = res => {
-          console.log(res);
           this.setData({
-            hasDialog: true,
-            userInfo: {},
-            hasUserInfo: false
+            hasDialog: true
           });
+          console.log('失败啦啊啊啊',res);
+
           // console.log(this.data.hasUserInfo);
         };
       };
@@ -46,13 +45,24 @@ Page(
     },
     retry: function(e) {
       // 兼容低版本微信, 开启授权设置页面用户手动授权
+
+      // 相信用户会开启授权, 为了防止返回还有弹窗, 提前设置关闭dialog
+      this.setData({
+        hasDialog: false
+      });
+
       console.log('retry');
       wx.openSetting({
         success: res => {
-          // 为了兼容低版本微信, 尚未测试
+          // 为了兼容低版本微信, 已测试 1.2.5版本库, 通过!
           console.log(res);
           if (res.authSetting['scope.userInfo']) {
             this.getUserInfo();
+          } else {
+            // 进来这个页面还不给权限, 脑残啊?
+            this.setData({
+              hasDialog: true
+            });
           }
         }
       });
